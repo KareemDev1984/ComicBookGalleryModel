@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,24 @@ namespace ComicBookGalleryModel.Models
 
         // ID wordt automatisch PrimaryKey in SQL en omdat het een numeriek veld is wordt dit automatisch ook Identity
         public int Id { get; set; }
-        public string SeriesTitle { get; set; }
+        public int SeriesId { get; set; }
+
+        //[ForeignKey("SeriesRefId")]  //als we van de conventie afwijken (moesten we de foreignkey SeriesId hebben genoemd zou EF deze automtisch detecteren, maar nu moeten we het zelf aanduiden */als foreignKey)
+        //public Series Series { get; set; }
+
         public int IssueNumber { get; set; }
         public string Description { get; set; }
         public DateTime PublishedOn { get; set; }
         public decimal? Averagerating { get; set; } //questionMark to make it nullable
+
+
+        public Series Series { get; set; }
+
+        public string  DisplayText
+        {
+            get { return $"{Series?.Title} #{IssueNumber}"; }
+       
+        }
+
     }
 }
