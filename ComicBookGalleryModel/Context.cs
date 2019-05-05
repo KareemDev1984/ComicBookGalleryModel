@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace ComicBookGalleryModel
 {
-    public class Context: DbContext
+    public class Context: DbContext  
     {
+        public Context():base("Movies")
+        {
+
+        }
+
         public DbSet<ComicBook> ComicBooks { get; set; }
 
     }

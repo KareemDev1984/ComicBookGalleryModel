@@ -15,6 +15,7 @@ namespace ComicBookGalleryModel
         {
             using (var context = new Context())
             {
+              
                 context.ComicBooks.Add(new ComicBook()
                 {
                     SeriesTitle = "The Amazing Spiderman",
