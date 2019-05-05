@@ -21,15 +21,31 @@ namespace ComicBookGalleryModel.Models
         public int IssueNumber { get; set; }
         public string Description { get; set; }
         public DateTime PublishedOn { get; set; }
-        public decimal? Averagerating { get; set; } //questionMark to make it nullable
+        public decimal? AverageRating { get; set; } //questionMark to make it nullable
 
+        public virtual ICollection<ComicBookArtist> Artists { get; set; }
 
-        public Series Series { get; set; }
+        public virtual Series Series { get; set; }
+
 
         public string  DisplayText
         {
-            get { return $"{Series?.Title} #{IssueNumber}"; }
+            get { return $"{Series?.Title}  #{IssueNumber}"; }
        
+        }
+
+        public ComicBook()
+        {
+            Artists = new List<ComicBookArtist>();
+        }
+
+        public void AddArtist(Artist artist, Role role)
+        {
+            Artists.Add(new ComicBookArtist()
+            {
+                Artist = artist,
+                Role = role
+            });
         }
 
     }
