@@ -8,11 +8,20 @@ using System.Threading.Tasks;
 
 namespace ComicBookGalleryModel
 {
-    public class Context: DbContext  
+    public class Context: DbContext 
     {
-        public Context():base("Movies")
-        {
 
+        // best is de connectionstring in config file (to keep keep the configuration out of our code)
+
+        //public Context() : base("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = ComicBookGallery; Integrated Security = True; MultipleActiveResultSets=True")
+        //{
+
+        //}
+        public Context()
+        {
+            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+            ////Database.SetInitializer(new CreateDatabaseIfNotExists<Context>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<Context>());
         }
 
         public DbSet<ComicBook> ComicBooks { get; set; }
